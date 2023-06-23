@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 import axios from "axios";
 import { useEffect } from "react";
 
+
 function Signup() {
   const navigate = useNavigate();
 
@@ -49,7 +50,6 @@ function Signup() {
     const existingUser = registeredUsers.find(
       (user) => user.SignupEmail === signupData.SignupEmail
     );
-
     if(existingUser){
         window.alert("User already exists.Please Login")
         navigate('/login')
@@ -64,12 +64,16 @@ function Signup() {
           })
             .then((response) => response.json())
             .then((data) => {
-              console.log(data);
+              navigate("/", {
+                // Pass the newly created user data as props to the `/` page
+                state: {
+                  loggedInUser: data,
+                },
+              });
             })
             .catch((error9) => {
               console.error("Error:", error9);
-            });
-        navigate('/')
+            })
 
     }
 

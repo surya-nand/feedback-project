@@ -146,6 +146,9 @@
   margin-bottom: 10px;
   background: rgba(54, 65, 106, 0.15);
   border-radius: 4px;
+  &.expanded{
+    height: 40vh;
+  }
 }
 
 .product-logo-image {
@@ -313,7 +316,6 @@
 .blackcomment-button {
   border: none;
   background: none;
-  cursor: pointer;
 }
 
 .product-comment-element {
@@ -322,7 +324,8 @@
   background-color: #8b8b8b;
 }
 
-.add-product-form,.add-signup-form {
+.add-product-form,
+.add-signup-form {
   display: flex;
   margin: auto;
   position: absolute;
@@ -340,7 +343,8 @@
   border-radius: 11px;
 }
 
-.product-details,.signup-details{
+.product-details,
+.signup-details {
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
@@ -349,7 +353,8 @@
   border-radius: 0%;
 }
 
-.product-line,.signup-line {
+.product-line,
+.signup-line {
   position: absolute;
   width: 350px;
   height: 0px;
@@ -406,8 +411,7 @@
 .user-name,
 .user-email,
 .user-mobile,
-.user-password 
-{
+.user-password {
   width: 400px;
   margin-left: 5%;
   font-weight: 500;
@@ -418,7 +422,7 @@
   margin-top: 6%;
 }
 
-.add-product-form-button{
+.add-product-form-button {
   width: 150px;
   height: 44.186px;
   flex-shrink: 0;
@@ -429,7 +433,7 @@
   font-size: large;
   color: #ffffff;
   border: none;
-  margin-top: -3%;
+  margin-top: 9%;
   margin-left: 4%;
   cursor: pointer;
 }
@@ -458,50 +462,276 @@
 .mobile-img,
 .password-img {
   position: absolute;
-  width: 4%;
-  height: 4.5%;
   flex-shrink: 0;
   margin-top: 2%;
 }
 
-.signup-form-button{
-    width: 150px;
-    height: 44.186px;
-    flex-shrink: 0;
-    border-radius: 27.907px;
-    background: #36416a;
-    justify-content: center;
-    text-align: center;
-    font-size: large;
-    color: #ffffff;
-    border: none;
-    margin-top: 18%;
-    margin-left: 4%;
-    cursor: pointer;
+.signup-form-button {
+  width: 150px;
+  height: 44.186px;
+  flex-shrink: 0;
+  border-radius: 27.907px;
+  background: #36416a;
+  justify-content: center;
+  text-align: center;
+  font-size: large;
+  color: #ffffff;
+  border: none;
+  margin-top: 18%;
+  margin-left: 4%;
+  cursor: pointer;
+}
+
+.Account-form-login {
+  display: flex;
+  margin-left: 10%;
+  margin-top: 5%;
+}
+
+.Account-form-login p {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 26px;
+  /* identical to box height */
+  color: #737373;
+}
+
+.Account-form-login h1 {
+  font-weight: 500;
+  font-size: 17px;
+  /* identical to box height */
+  text-decoration-line: underline;
+  color: #36416a;
+  margin-left: -11%;
+  width: 5vw;
+}
+
+.login-form-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.Account-form-login {
+  margin-left: 5.5%;
+}
+
+.signup-form-button {
+  margin-top: 3%;
+}
+
+.name-img {
+  margin-top: 8.8%;
+  width: 2%;
+  height: 4%;
+  margin-left: -1%;
+}
+
+.email-img {
+  margin-top: 14.8%;
+  width: 2%;
+  height: 4%;
+  margin-left: -1%;
+}
+
+.mobile-img {
+  margin-top: 20.8%;
+  width: 2%;
+  height: 4%;
+  margin-left: -1%;
+}
+
+.password-img {
+  margin-top: 26.8%;
+  width: 2%;
+  height: 4%;
+  margin-left: -1%;
+}
+
+.user-name,
+.user-email,
+.user-mobile,
+.user-password {
+  margin-left: 6%;
+}
+
+.comment-input{
+  margin-top: 1%;
+  margin-left: 2.4%;
+  width: 90%;
+  height: 15%;
+  flex-shrink: 0;
+  border-radius: 43px;
+  border: 3px solid #C7CBD6;
+  background: #FFF;
+  color: #ABABAB;
+  font-size: 20px;
+  line-height: 147.2%;
   }
 
-  .Account-form-login{
+  .comment-section{
+    margin-top: 1%;
+    position: relative;
+    width: 80%;
+    height: 100px;
+    margin-left: 3%;
+    color: #999;
+    max-height: 150px;
+    overflow-y: scroll;
+  }
+  .product-comments-element{
+    display:flex ;
+    position : relative;
     display: flex;
-    margin-left: 10%;
-    margin-top: 5%;
-}
+    padding-top: 10px;
+    margin-left: 3%;
+   
+  }
+  .comment-dot{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    flex-shrink: 0;
+    border-radius: 15px;
+  background: #36416A;
+  margin-top: 1%;
+  margin-left: -3%;
+  }
 
-.Account-form-login p{
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 26px;
-    /* identical to box height */
-    color: #737373;
-}
+  .enter-img-button{
+    position: absolute;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-top: 1.5%;
+    margin-left: -5%;
+  }
+  .enter-img{
+    width: 20px;
+    height: 20px;
+  }
 
-.Account-form-login h1{
-    font-weight: 500;
-    font-size: 17px;
-    /* identical to box height */
-    text-decoration-line: underline;
-    color: #36416A;
-    margin-left: -11%;
-    width: 5vw;
-}
-
-
+  @media (max-width: 425px) {
+    .footer-component {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    .add-product-overlay {
+      display: none;
+    }
+  
+    .feedback-component-filter {
+      position: relative;
+      width: 100%;
+      height: auto;
+      padding: 0;
+      margin: 0;
+    }
+  
+    .feedback-component-filter-block {
+      height: auto;
+      margin: 0;
+    }
+  
+    .feedback-component-filter-block h1 {
+      font-size: 20px;
+      line-height: 30px;
+      padding: 5% 7%;
+    }
+  
+    .feedback-component-filter-block p {
+      padding: 5% 7%;
+    }
+  
+    .feedback-component-filter-options {
+      height: auto;
+      margin: 0;
+      overflow-y: visible;
+    }
+  
+    .product-recommendations {
+      width: 100%;
+      margin-left: 0;
+      margin-bottom: 5%;
+    }
+  
+    .product-recommendations h1 {
+      font-size: 15px;
+      padding-left: 1%;
+    }
+  
+    .product-recommendations p {
+      font-size: 12px;
+      margin-left: 10%;
+    }
+  
+    .product-recommendations h2 {
+      font-size: 15px;
+      padding-left: 0.5%;
+    }
+  
+    .product-recommendations-add-product {
+      margin-left: 38%;
+      font-size: 14px;
+      height: 3.5vh;
+      width: 16vw;
+    }
+  
+    .product-recommendations-arrowimg {
+      height: 4vh;
+      margin-left: 23%;
+    }
+  
+    .products {
+      position: static;
+      width: 100%;
+      height: auto;
+      margin-left: 0;
+      margin-top: 5%;
+    }
+  
+    .product-card {
+      width: 70%;
+      height: auto;
+      margin: 2% 5%;
+    }
+  
+    .product-logo-image {
+      width: 40%;
+      margin-top: 5%;
+      margin-left: 5%;
+    }
+  
+    .product-title {
+      font-size: 15px;
+      padding-left: 5%;
+      margin-top: 3%;
+    }
+  
+    .product-description {
+      font-size: 12px;
+      padding-left: 5%;
+    }
+  
+    .product-categories {
+      margin-left: 5%;
+      margin-top: 2%;
+    }
+  
+    .filter-category {
+      font-size: 14px;
+      margin-left: 2%;
+      margin-right: 2%;
+      margin-top: 2%;
+      margin-bottom: 2%;
+      padding: 3%;
+    }
+  
+    .filter-all-button,
+    .filter-category-button {
+      font-size: 14px;
+      padding-top: 1%;
+      padding-bottom: 1%;
+    }
+  }

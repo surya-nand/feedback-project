@@ -8,6 +8,7 @@ function Navbar() {
   const location = useLocation();
   const loggedInUser = location.state && location.state.loggedInUser;
 
+
   function handlesignupButton() {
     navigate("/signup");
   }
@@ -24,7 +25,7 @@ function Navbar() {
         <h1 className="navbar-component-title">Feedback</h1>
         {loggedInUser ? (
           <div className="navbar-loggedin">
-            <button onClick={handleLogoutButton} class="navbar-component-logout">Log Out</button>
+            <button onClick={handleLogoutButton} className="navbar-component-logout">Log Out</button>
             <div className="navbar-image">
               <img className="navbar-pp-image" src={passportimg} alt='passportimg'></img>
             </div>
@@ -51,3 +52,21 @@ function Navbar() {
 }
 
 export default Navbar;
+
+
+
+  // const renderComments = () => {
+  //   if (isCommentOpen) {
+  //     return (
+  //       <div className="product-comments">
+  //         {products.map((product, index) => (
+  //           <div className="product-comment-element" key={index}>
+  //             <p>Hi</p>
+  //           </div>
+  //         ))}
+  //       </div>
+  //     );
+  //   } else {
+  //     return null;
+  //   }
+  // };
