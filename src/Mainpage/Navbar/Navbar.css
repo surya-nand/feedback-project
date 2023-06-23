@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+}
+
+.navbar-component{
+    width: 100%;
+    background-color: #36416A;
+    height: 10vh;
+    color: aliceblue;
+}
+
+.navbar-elements{
+    display: flex;
+    padding-left: 47px;
+    padding-top: 24px;
+}
+
+.navbar-component-title{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 36px;
+    text-align: center;
+
+}
+
+.navbar-signup,.navbar-loggedin{
+    display: flex;
+    padding-left: 70%;
+    position: relative;
+    text-align: center;
+    justify-content:center;
+    align-items: center;
+}
+
+.navbar-component-login,.navbar-component-logout{
+    padding-right: 20px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 31px;
+    border: none;
+    background-color: #36416A;
+    color: aliceblue;
+    cursor: pointer;
+}
+
+.navbar-component-signup{
+    margin-top: 1px;
+    background-color: #36416A;
+    color: aliceblue;
+    border-radius: 5px;
+    cursor: pointer;
+    border-color: aliceblue;
+    border-style: solid;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 31px;
+}
+
+.navbar-pp-image{
+    width: 54px;
+height: 54px;
+flex-shrink: 0;
+border-radius: 27.643px;
+background: lightgray 50% / cover no-repeat;
+}
+
+.navbar-loggedin{
+    margin-top: -0.7%;
+    margin-left: 3%;
+}

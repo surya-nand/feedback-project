@@ -1,0 +1,183 @@
+* {
+  margin: 0;
+}
+
+.signup-page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #36416a;
+}
+
+.signup-title {
+  position: relative;
+  margin-bottom: 3%;
+  margin-left: 3%;
+  width: 50vw;
+  color: #ffffff;
+}
+
+.signup-title h1 {
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 78px;
+}
+
+.signup-title p {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 33px;
+  padding-left: 1%;
+  /* identical to box height */
+}
+
+.signup-details-page {
+  width: 770px;
+  height: 400px;
+  left: 363px;
+  top: 308px;
+  background: #ffffff;
+  box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.25);
+  border-radius: 33px;
+}
+
+.signup-details-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-details-page {
+  border-radius: 33px;
+}
+
+.signup-email,
+.signup-password,
+.signup-name,
+.signup-mobile {
+  display: flex;
+  align-items: center;
+}
+
+/* .signup-email{
+  margin-top: 10%;
+  margin-left: 10%;
+}
+
+.signup-password{
+  margin-top: 8%;
+  margin-left: 10%;
+} */
+
+.signup-name {
+  margin-top: 8%;
+}
+.signup-name,
+.signup-email,
+.signup-mobile,
+.signup-password {
+  margin-bottom: 4%;
+  margin-left: 5%;
+}
+
+.signup-mobile,.signup-password{
+  margin-left: 5.5%;
+}
+
+.signup-email-line,
+.signup-password-line,.signup-mobile-line,.signup-name-line{
+  position: absolute;
+  width: 500px;
+  height: 0px;
+  border: 1px solid #aaaaaa;
+  margin-top: 6.2%;
+  margin-left: 7%;
+}
+.signup-password-line{
+  margin-top:14.2%;
+}
+.signup-mobile-line{
+  margin-top: 10.3%;
+}
+
+.signup-email-line{
+  margin-top: 18.1%;
+  margin-left: 6.9%;
+}
+
+.Account-login {
+  display: flex;
+  margin-left: 10%;
+  margin-top: -1%;
+}
+
+.Account-login p {
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 26px;
+  /* identical to box height */
+  color: #737373;
+}
+
+.Account-login h1 {
+  font-weight: 500;
+  font-size: 15px;
+  width: 10vw;
+  /* identical to box height */
+  text-decoration-line: underline;
+  color: #36416a;
+  margin-left: -30%;
+}
+
+.signup-button-division {
+  display: flex;
+  width: 150px;
+  height: 44.19px;
+  left: 900px;
+  top: 627px;
+  background: #36416a;
+  border-radius: 27.907px;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+}
+
+.signup-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.signup-button-division p {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 29px;
+  /* identical to box height */
+  color: #ffffff;
+}
+
+.signup-division {
+  margin-left: 60%;
+}
+
+.signup-email-input,
+.signup-password-input,
+.signup-mobile-input,
+.signup-name-input {
+  width: 500px;
+  margin-left: 5%;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+  color: #737373;
+  border: none;
+}
+
+.login-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
