@@ -356,7 +356,7 @@
   margin-left: 90%;
   justify-content: center;
   align-items: center;
-  margin-top: 27%;
+  margin-top: 24%;
   margin-left: 105%;
   display: flex;
 }
@@ -737,7 +737,6 @@
   .product-recomendations-arrowimg {
     position: absolute;
     margin-left: 49%;
-    margin-top: 0.2%;
     border: none;
     background-color: #ffffff;
     cursor: pointer;
@@ -864,7 +863,7 @@
   
   .product-card {
     position: relative;
-    height: 15vh;
+    height: 17vh;
     width: 127%;
     margin-left: -25%;
     margin-top: 35%;
@@ -975,8 +974,8 @@
     border-radius: 15.9836px;
     justify-content: center;
     text-align: center;
-    margin-top: -95%;
-    margin-left: 50%;
+    margin-top: -92%;
+    margin-left: 57%;
   }
   
   .arrowimg2 {

@@ -30,6 +30,7 @@
     text-align: center;
     justify-content:center;
     align-items: center;
+    margin-top: -1%;
 }
 
 .navbar-component-login,.navbar-component-logout{
