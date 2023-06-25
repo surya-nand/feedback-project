@@ -11,7 +11,7 @@ import Passwordimg from "./../../Assets/passwordimg.png";
 import Mobileimg from "./../../Assets/mobileimg.png";
 import Nameimg from "./../../Assets/nameimg.png";
 import Enterimg from "./../../Assets/enterimg.png";
-const Base_URL = 'https://feedback-server-rn39.onrender.com'
+const Base_URL = "https://feedback-server-rn39.onrender.com";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -31,6 +31,11 @@ const Footer = () => {
     SignupEmail: "",
     SignupMobile: "",
     SignupPassword: "",
+  });
+
+  const [loginData, setLoginData] = useState({
+    LoginEmail: "",
+    LoginPassword: "",
   });
 
   const [registeredUsers, setRegisteredUsers] = useState([]);
@@ -54,25 +59,19 @@ const Footer = () => {
   // const [isCommentOpen, setIsCommentOpen] = useState(false);
   const [isAddProductFormOpen, setIsAddProductFormOpen] = useState(false);
   const [isSignupFormOpen, setIsSignupFormOpen] = useState(false);
+  const [isLoginFormOpen, setIsLoginFormOpen] = useState(false);
   const [suggestions, setSuggestions] = useState(0);
   const [isEditProductFormOpen, setIsEditProductFormOpen] = useState(false);
   const [allproducts, setAllproducts] = useState([]);
 
-  const [updatedProductData, setUpdatedProductData] = useState([
-    // CompanyName: "",
-    // Category: "",
-    // logoUrl: "",
-    // Link: "",
-    // Description: "",
-    // Upvotes: 0,
-    // CommentsCount: 0,
-    // Comments: "",
-  ]);
+  const [updatedProductData, setUpdatedProductData] = useState([]);
+
+  const [isSortingOpen, setIsSortingOpen] = useState(false);
 
   // const [categories, setCategories] = useState([])
   useEffect(() => {
     axios
-    
+
       .get(`${Base_URL}/api/products`)
       .then((res) => {
         let products_data = res.data;
@@ -145,12 +144,27 @@ const Footer = () => {
 
   const handleLoginFormButton = (event1) => {
     event1.preventDefault();
-    navigate("/login");
+    setIsLoginFormOpen(!isLoginFormOpen);
   };
-  // function handleSortProducts() {
-  //   const sortedProducts = [...products].sort((a, b) => b.Upvotes - a.Upvotes);
-  //   setProducts(sortedProducts);
-  // }
+
+  function handleSorting() {
+    setIsSortingOpen(!isSortingOpen);
+    setProducts(allproducts);
+  }
+
+  function handleUpvotesSortButton() {
+    const sortedUpvoteProducts = [...products].sort(
+      (a, b) => b.Upvotes - a.Upvotes
+    );
+    setProducts(sortedUpvoteProducts);
+  }
+
+  function handleCommentsSortButton() {
+    const sortedCommentProducts = [...products].sort(
+      (a, b) => b.CommentsCount - a.CommentsCount
+    );
+    setProducts(sortedCommentProducts);
+  }
   const handleUpvoteButton = async (productId) => {
     if (loggedInUser) {
       setProducts((prevProducts) =>
@@ -174,16 +188,13 @@ const Footer = () => {
 
   const updateProductInDatabase = async (productId, updatedUpvotes) => {
     try {
-      const response = await fetch(
-        `${Base_URL}/api/products/${productId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ Upvotes: updatedUpvotes }),
-        }
-      );
+      const response = await fetch(`${Base_URL}/api/products/${productId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ Upvotes: updatedUpvotes }),
+      });
 
       if (!response.ok) {
         // Handle the error if product update fails
@@ -249,6 +260,29 @@ const Footer = () => {
     }
   }
 
+  async function handleLoginForm(event8) {
+    event8.preventDefault();
+    const existingUser = registeredUsers.find(
+      (user) => user.SignupEmail === loginData.LoginEmail
+    );
+    if (!existingUser) {
+      window.alert("User doesnot exist. Please register first");
+      navigate("/signup");
+    } else if (existingUser.SignupPassword === loginData.LoginPassword) {
+      setIsLoginFormOpen(false)
+      setIsSignupFormOpen(false)
+      document.body.style.overflow = "auto";
+      window.alert(`welocme ${existingUser.SignupName}!`);
+      navigate("/", {
+        state: {
+          loggedInUser: existingUser,
+        },
+      });
+    } else {
+      window.alert("Please enter correct password");
+    }
+  }
+
   const handleInputChange = (event5) => {
     const { name, value } = event5.target;
     setProductData((prevState) => ({
@@ -272,6 +306,16 @@ const Footer = () => {
       [name]: value,
     }));
   };
+
+  const handleInputChange3 = (event6) => {
+    const { name, value } = event6.target;
+    setLoginData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+
   const handleCommentInputChange = (event7) => {
     const { value } = event7.target;
     setProductData((prevData) => ({
@@ -313,17 +357,13 @@ const Footer = () => {
   const updateCommentsInDatabase = async (productId, updatedComments) => {
     try {
       const latestComment = updatedComments[updatedComments.length - 1];
-      const response = await fetch(
-       
-        `${Base_URL}/api/products/${productId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ Comments: latestComment }),
-        }
-      );
+      const response = await fetch(`${Base_URL}/api/products/${productId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ Comments: latestComment }),
+      });
 
       if (!response.ok) {
         // Handle the error if comments update fails
@@ -360,6 +400,7 @@ const Footer = () => {
       {isAddProductFormOpen && <div className="add-product-overlay"></div>}
       {isSignupFormOpen && <div className="add-product-overlay"></div>}
       {isEditProductFormOpen && <div className="add-product-overlay"></div>}
+      {isLoginFormOpen && <div className="add-product-overlay"></div>}
       <div className="feedback-component-filter">
         <div className="feedback-component-filter-block">
           <h1>Feedback</h1>
@@ -396,34 +437,50 @@ const Footer = () => {
 
           ))} */}
           <div className="filter-category-elements-container">
-          {uniqueCategories.map((category, index) => (
-            <div className="filter-category-element">
-              <button
-                onClick={handleFilterCategory}
-                className="filter-category-button"
-                key={index}
-              >
-                <div
-                  className="filter-category"
-                  style={{
-                    width: `${category.trim().length * 12}px`,
-                  }}
+            {uniqueCategories.map((category, index) => (
+              <div className="filter-category-element">
+                <button
+                  onClick={handleFilterCategory}
+                  className="filter-category-button"
+                  key={index}
                 >
-                  <span>{category}</span>
-                </div>
-              </button>
-            </div>
-          ))}
+                  <div
+                    className="filter-category"
+                    style={{
+                      width: `${category.trim().length * 12}px`,
+                    }}
+                  >
+                    <span>{category}</span>
+                  </div>
+                </button>
+              </div>
+            ))}
           </div>
         </div>
       </div>
       <div className="product-recomendations">
         <h1>{suggestions} Suggestions</h1>
         <p>Sort by:</p>
-        <h2>Upvotes</h2>
+        {/* <h2>Upvotes</h2> */}
         <button className="product-recomendations-arrowimg">
-          <img src={arrowimg} alt="arrowimg"></img>
+          <img onClick={handleSorting} src={arrowimg} alt="arrowimg"></img>
         </button>
+        {isSortingOpen && (
+          <div className="sorting-options">
+            <button
+              className="upvotes-sort-button"
+              onClick={handleUpvotesSortButton}
+            >
+              <div className="upvotes-sort">Upvotes</div>
+            </button>
+            <button
+              className="comments-sort-button"
+              onClick={handleCommentsSortButton}
+            >
+              <div className="comments-sort">Comments</div>
+            </button>
+          </div>
+        )}
         <button
           onClick={handleAddProduct}
           className="product-recomendations-add-product"
@@ -492,7 +549,11 @@ const Footer = () => {
                   // onClick={() => handleBlackCommentButton(product._id)}
                   className="blackcomment-button"
                 >
-                  <img className='blackcomment-img'src={blackcomment} alt="Blackcomment"></img>
+                  <img
+                    className="blackcomment-img"
+                    src={blackcomment}
+                    alt="Blackcomment"
+                  ></img>
                 </button>
               </div>
             </div>
@@ -664,7 +725,7 @@ const Footer = () => {
               ></input>
               <div className="product-line4"></div>
               <button type="submit" className="add-product-form-button">
-                +Add
+                Update
               </button>
             </div>
             <div className="website-details">
@@ -754,6 +815,53 @@ const Footer = () => {
               </div>
               <button type="submit" className="signup-form-button">
                 Signup
+              </button>
+            </div>
+            <div className="website-details">
+              <h1 className="website-title">Feedback</h1>
+              <p className="website-description">
+                Add your
+                <br />
+                product and
+                <br />
+                rate other
+                <br />
+                items.....
+              </p>
+            </div>
+          </div>
+        </form>
+      )}
+      {isLoginFormOpen && (
+        <form method="POST" onSubmit={handleLoginForm}>
+          <div className="add-signup-form">
+            <div className="signup-data"></div>
+            <div className="signup-details">
+              <h1>Login to continue</h1>
+              <img className="name-img" src={Emailimg} alt="form-name"></img>
+              <input
+                className="user-name"
+                type="email"
+                name="LoginEmail"
+                required
+                placeholder="Email"
+                value={loginData.LoginEmail}
+                onChange={handleInputChange3}
+              ></input>
+              <div className="signup-line"></div>
+              <img className="email-img" src={Passwordimg} alt="form-email"></img>
+              <input
+                className="user-email"
+                type="password"
+                name="LoginPassword"
+                required
+                placeholder="Password"
+                value={loginData.LoginPassword}
+                onChange={handleInputChange3}
+              ></input>
+              <div className="signup-line1"></div>
+              <button type="submit" className="signup-login-form-button">
+                Login
               </button>
             </div>
             <div className="website-details">
