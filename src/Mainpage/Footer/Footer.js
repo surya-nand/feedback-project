@@ -22,7 +22,7 @@ const Footer = () => {
     Description: "",
     Upvotes: 0,
     CommentsCount: 0,
-    Comments: "Comment Section",
+    Comments: "",
   });
 
   const [signupData, setSignupData] = useState({
@@ -54,7 +54,19 @@ const Footer = () => {
   const [isAddProductFormOpen, setIsAddProductFormOpen] = useState(false);
   const [isSignupFormOpen, setIsSignupFormOpen] = useState(false);
   const [suggestions, setSuggestions] = useState(0);
+  const [isEditProductFormOpen, setIsEditProductFormOpen] = useState(false);
   const [allproducts, setAllproducts] = useState([]);
+
+  const [updatedProductData, setUpdatedProductData] = useState([
+    // CompanyName: "",
+    // Category: "",
+    // logoUrl: "",
+    // Link: "",
+    // Description: "",
+    // Upvotes: 0,
+    // CommentsCount: 0,
+    // Comments: "",
+  ]);
 
   // const [categories, setCategories] = useState([])
   useEffect(() => {
@@ -79,6 +91,43 @@ const Footer = () => {
         return product;
       })
     );
+  };
+
+  const handleEditProductButton = (productId) => {
+    if (loggedInUser) {
+      const product = products.find((product) => product._id === productId);
+      setUpdatedProductData(product);
+      setIsEditProductFormOpen(true);
+
+      const UpdatedProducts = products.filter(
+        (product) => product._id !== productId
+      );
+      setProducts(UpdatedProducts);
+      document.body.style.overflow = "hidden";
+    } else {
+      window.alert("Please signup to edit your product");
+      setIsSignupFormOpen(true);
+      document.body.style.overflow = "hidden";
+    }
+  };
+  const handleSubmitEditProductFormButton = async (e5) => {
+    e5.preventDefault();
+    await fetch("http://localhost:4500/api/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedProductData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error17) => {
+        console.error("Error:", error17);
+      });
+    setIsEditProductFormOpen(false);
+    document.body.style.overflow = "auto";
   };
 
   const handleAddProduct = () => {
@@ -144,12 +193,16 @@ const Footer = () => {
     }
   };
 
+  const uniqueCategories = Array.from(
+    new Set(products.flatMap((product) => product.Category[0].split(",")))
+  );
+  // console.log(uniqueCategories)
   const handleFilterCategory = (e2) => {
     e2.preventDefault();
-    const category = e2.target.textContent;
-    const filteredProducts = products.filter((product) => {
-      return product.Category[0].includes(category);
-    });
+    const category = e2.target.textContent.trim();
+    const filteredProducts = allproducts.filter((product) =>
+      product.Category[0].includes(category)
+    );
     setProducts(filteredProducts);
     setSuggestions(filteredProducts.length);
   };
@@ -194,30 +247,36 @@ const Footer = () => {
     }
   }
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
+  const handleInputChange = (event5) => {
+    const { name, value } = event5.target;
     setProductData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
 
-  const handleInputChange1 = (event) => {
-    const { name, value } = event.target;
+  const handleInputChange1 = (event6) => {
+    const { name, value } = event6.target;
     setSignupData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
-  const handleCommentInputChange = (event) => {
-    const { value } = event.target;
+
+  const handleInputChange2 = (event6) => {
+    const { name, value } = event6.target;
+    setUpdatedProductData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+  const handleCommentInputChange = (event7) => {
+    const { value } = event7.target;
     setProductData((prevData) => ({
       ...prevData,
       Comments: [value],
     }));
   };
-
-  
 
   const handleEnterComment = async (productId) => {
     if (loggedInUser) {
@@ -297,6 +356,7 @@ const Footer = () => {
     <div className={`footer-component ${isAddProductFormOpen ? "blur" : ""}`}>
       {isAddProductFormOpen && <div className="add-product-overlay"></div>}
       {isSignupFormOpen && <div className="add-product-overlay"></div>}
+      {isEditProductFormOpen && <div className="add-product-overlay"></div>}
       <div className="feedback-component-filter">
         <div className="feedback-component-filter-block">
           <h1>Feedback</h1>
@@ -312,8 +372,8 @@ const Footer = () => {
             </div>
           </button>
 
-          {products.map((product2, index2) => (
-            <div className="filter-category-element" key={index2}>
+          {/* {products.map((product2, index2) => (
+            <div className="filter-category-element" key={product2._id}>
               {product2.Category[0].split(",").map((category2, key2) => (
                 <button
                   onClick={handleFilterCategory}
@@ -321,7 +381,6 @@ const Footer = () => {
                 >
                   <div
                     className="filter-category"
-                    key={product2._id}
                     style={{
                       width: `${category2.trim().length * 12}px`,
                     }}
@@ -331,16 +390,35 @@ const Footer = () => {
                 </button>
               ))}
             </div>
+
+          ))} */}
+          <div className="filter-category-elements-container">
+          {uniqueCategories.map((category, index) => (
+            <div className="filter-category-element">
+              <button
+                onClick={handleFilterCategory}
+                className="filter-category-button"
+                key={index}
+              >
+                <div
+                  className="filter-category"
+                  style={{
+                    width: `${category.trim().length * 12}px`,
+                  }}
+                >
+                  <span>{category}</span>
+                </div>
+              </button>
+            </div>
           ))}
+          </div>
         </div>
       </div>
       <div className="product-recomendations">
         <h1>{suggestions} Suggestions</h1>
         <p>Sort by:</p>
         <h2>Upvotes</h2>
-        <button
-          className="product-recomendations-arrowimg"
-        >
+        <button className="product-recomendations-arrowimg">
           <img src={arrowimg} alt="arrowimg"></img>
         </button>
         <button
@@ -365,7 +443,7 @@ const Footer = () => {
                 alt="product-logo"
               ></img>
             </div>
-            <div className="product-title" key={index}>
+            <div className="product-title">
               <h1>{product.CompanyName}</h1>
             </div>
             <div className="product-description">
@@ -378,7 +456,10 @@ const Footer = () => {
                 </div>
               ))}
             </div>
-            <button onClick={() => handleBlackCommentButton(product._id)} className="product-comment-category-button">
+            <button
+              onClick={() => handleBlackCommentButton(product._id)}
+              className="product-comment-category-button"
+            >
               <div className="product-comment-category">
                 <img
                   className="whitecomment"
@@ -408,12 +489,20 @@ const Footer = () => {
                   // onClick={() => handleBlackCommentButton(product._id)}
                   className="blackcomment-button"
                 >
-                  <img src={blackcomment} alt="Blackcomment"></img>
+                  <img className='blackcomment-img'src={blackcomment} alt="Blackcomment"></img>
                 </button>
               </div>
             </div>
             {product.isCommentOpen && (
               <div key={product.id} className="comments-open">
+                <button
+                  onClick={() => handleEditProductButton(product._id)}
+                  className="edit-product-button"
+                >
+                  <div className="edit-product-section">
+                    <p>Edit</p>
+                  </div>
+                </button>
                 <input
                   className="comment-input"
                   type="name"
@@ -521,9 +610,79 @@ const Footer = () => {
           </div>
         </form>
       )}
+      {isEditProductFormOpen && (
+        <form method="POST" onSubmit={handleSubmitEditProductFormButton}>
+          <div className="add-product-form">
+            <div className="product-details">
+              <h1>Update product</h1>
+              <input
+                className="company-name"
+                type="name"
+                name="CompanyName"
+                placeholder="Name of the company"
+                value={updatedProductData.CompanyName}
+                onChange={handleInputChange2}
+              ></input>
+              <div className="product-line"></div>
+              <input
+                className="company-category"
+                type="category"
+                name="Category"
+                placeholder="Category"
+                value={updatedProductData.Category}
+                onChange={handleInputChange2}
+              ></input>
+              <div className="product-line1"></div>
+              <input
+                className="company-logo-url"
+                type="url"
+                name="logoUrl"
+                placeholder="Add logo url"
+                value={updatedProductData.logoUrl}
+                onChange={handleInputChange2}
+              ></input>
+              <div className="product-line2"></div>
+              <input
+                className="company-product-link"
+                type="url"
+                name="Link"
+                placeholder="Link of product"
+                value={updatedProductData.Link}
+                onChange={handleInputChange2}
+              ></input>
+              <div className="product-line3"></div>
+              <input
+                className="company-description"
+                type="text"
+                name="Description"
+                placeholder="Add Description"
+                value={updatedProductData.Description}
+                onChange={handleInputChange2}
+              ></input>
+              <div className="product-line4"></div>
+              <button type="submit" className="add-product-form-button">
+                +Add
+              </button>
+            </div>
+            <div className="website-details">
+              <h1 className="website-title">Feedback</h1>
+              <p className="website-description">
+                Add your
+                <br />
+                product and
+                <br />
+                rate other
+                <br />
+                items.....
+              </p>
+            </div>
+          </div>
+        </form>
+      )}
       {isSignupFormOpen && (
         <form method="POST" onSubmit={handleSignupFormButton}>
           <div className="add-signup-form">
+            <div className="signup-data"></div>
             <div className="signup-details">
               <h1>Signup to continue</h1>
               <img className="name-img" src={Nameimg} alt="form-name"></img>

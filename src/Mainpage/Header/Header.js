@@ -9,9 +9,9 @@ function Header() {
         <img className="headerimg" src={headerimg} alt="header-img"></img>
       </div>
       <div className="header-component-content">
-        <h1>Add your products and give<br></br>your valuable feedback</h1>
+        <h1>Add your products and give <br></br>your valuable feedback</h1>
         <p>
-          Easily give your feedback in a matter of minutes. Access your<br></br>audience
+          Easily give your feedback in a matter of minutes. Access your <br></br>audience
           on all platforms. Observe result manually in real time
         </p>
       </div>

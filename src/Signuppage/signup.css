@@ -180,4 +180,183 @@
   background: none;
   cursor: pointer;
 }
+@media (max-width: 425px) and (min-width: 320px) {
+  *{
+      margin: 0;
+  }
+  
+  .signup-page{
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #36416A;;
+  
+  }
+  
+  
+  .signup-title{
+      position: relative;
+      margin-bottom: 3%;
+      margin-left: -26%;
+      width: 50vw;
+      color: #FFFFFF;
+  }
+  
+  .signup-title h1{
+      font-weight: 500;
+      font-size: 30px;
+      line-height: 78px;
+  }
+  
+  .signup-title p{
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 25px;
+      padding-left: 1%;
+      width: 80vw;
+  }
+  
+  .signup-details-page{
+      width: 80%;
+      height: 400px;
+      left: 363px;
+      top: 308px;
+      background: #FFFFFF;
+      box-shadow: 0px 4px 36px rgba(0, 0, 0, 0.25);
+      border-radius: 10px;
+  }
+  
+  .signup-details{
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .login-email,.login-password{
+      display: flex;
+      align-items: center;
+  }
+  
+  .login-email{
+      margin-top: 10%;
+      margin-left: 10%;
+      margin-bottom: 15%;
+  }
+  
+  .login-password{
+      margin-top: 8%;
+      margin-left: 10%;
+  }
+  
+  
+  .signup-email-line,.signup-password-line,.signup-mobile-line,.signup-name-line{
+      position: absolute;
+      width: 190px;
+      height: 0px;
+      border: 1px solid #AAAAAA;
+      margin-top: 7%;
+      margin-left: 10%;
+  }
+  .signup-name-line{
+    margin-top: 14%;
+    margin-left: 15%;
+  }
+  .signup-email-line{
+    margin-top: 25%;
+    margin-left: 15%;
+  }
+  .signup-mobile-line{
+    margin-top: 36%;
+    margin-left: 15%;
+  }
+  .signup-password-line{
+    margin-top: 48%;
+    margin-left: 15%;
+  }
+
+  
+  
+  
+  .Account-login{
+      display: flex;
+      margin-left: 10%;
+      margin-top: 15%;
+  }
+  
+  .Account-login p{
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 26px;
+      /* identical to box height */
+      color: #737373;
+  }
+  
+  .Account-login h1{
+      font-weight: 500;
+      font-size: 17px;
+      /* identical to box height */
+      text-decoration-line: underline;
+      color: #36416A;
+      margin-left: 2%;
+      width: 15vw;
+  }
+  
+  .signup-button-division{
+      display: flex;
+      width: 180px;
+      height: 44.19px;
+      left: 900px;
+      top: 627px;
+      background: #36416A;
+      border-radius: 27.907px;
+      justify-content: center;
+      align-items: center;
+      color: #FFFFFF;
+      margin-top: 10%;
+      margin-left: -75%;
+  }
+  
+  .login-button{
+      background: none;
+      border: none;
+      cursor: pointer;
+  }
+  
+  .login-button-division p{
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 29px;
+      /* identical to box height */
+      color: #FFFFFF;
+  
+  }
+  
+  .login-division{
+      margin-left: 63%;
+  }
+  
+  .signup-email-input,.signup-password-input,.signup-name-input,.signup-mobile-input{
+      width: 200px;
+      margin-left: 5%;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 26px;
+      color: #737373;
+      border: none;
+  }
+  
+  .signup-button{
+      border: none;
+      background: none;
+      cursor: pointer;
+  }
+
+  .signup-mobile-input,.signup-password-input{
+    margin-left: 6%;
+  }
+
+
+}
 

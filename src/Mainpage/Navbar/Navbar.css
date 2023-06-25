@@ -70,3 +70,92 @@ background: lightgray 50% / cover no-repeat;
     margin-top: -0.7%;
     margin-left: 3%;
 }
+@media (max-width: 425px) and (min-width: 320px) {
+    .navbar-component{
+        width: 100vw;
+        background-color: #36416A;
+        height: 10vh;
+        color: aliceblue;
+    }
+    
+    .navbar-elements{
+        display: flex;
+        padding-left: 47px;
+        padding-top: 24px;
+    }
+    
+    .navbar-component-title{
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 36px;
+        text-align: center;
+        margin-top: -3.7%;
+        margin-left: -10%;
+    
+    }
+    
+    .navbar-signup,.navbar-loggedin{
+        display: flex;
+        padding-left: 70%;
+        position: absolute;
+        text-align: center;
+        justify-content:center;
+        align-items: center;
+        margin-top: -3%;
+        margin-left: -35%;
+    }
+    
+    .navbar-component-login,.navbar-component-logout{
+        padding-right: 20px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 31px;
+        border: none;
+        background-color: #36416A;
+        color: aliceblue;
+        cursor: pointer;
+    }
+    
+    .navbar-component-signup{
+        margin-top: 1px;
+        background-color: #36416A;
+        color: aliceblue;
+        border-radius: 5px;
+        cursor: pointer;
+        border-color: aliceblue;
+        border-style: solid;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 31px;
+    }
+    
+    .navbar-pp-image{
+        width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    border-radius: 27.643px;
+    background: lightgray 50% / cover no-repeat;
+    
+   
+    }
+
+    .navbar-image{
+        margin-left: -10%;
+
+    }
+    
+    .navbar-loggedin{
+        margin-top: -1%;
+        margin-left: -26%;
+    }
+
+    .navbar-component-logout{
+        width: 80px;
+    }
+
+
+
+ }
+
