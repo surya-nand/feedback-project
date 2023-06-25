@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Emailimg from "./../Assets/emailimg.png";
 import Passwordimg from "./../Assets/passwordimg.png";
 import axios from "axios";
+const Base_URL = 'https://feedback-server-rn39.onrender.com'
 
 const Login = () => {
 
@@ -17,7 +18,7 @@ const Login = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4500/api/users")
+      .get(`${Base_URL}/api/users`)
       .then((res) => {
         let users_data = res.data;
         setRegisteredUsers(users_data);

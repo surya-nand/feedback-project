@@ -11,6 +11,7 @@ import Passwordimg from "./../../Assets/passwordimg.png";
 import Mobileimg from "./../../Assets/mobileimg.png";
 import Nameimg from "./../../Assets/nameimg.png";
 import Enterimg from "./../../Assets/enterimg.png";
+const Base_URL = 'https://feedback-server-rn39.onrender.com'
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const Footer = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4500/api/users")
+      .get(`${Base_URL}/api/users`)
       .then((res) => {
         let users_data = res.data;
         setRegisteredUsers(users_data);
@@ -71,7 +72,8 @@ const Footer = () => {
   // const [categories, setCategories] = useState([])
   useEffect(() => {
     axios
-      .get("http://localhost:4500/api/products")
+    
+      .get(`${Base_URL}/api/products`)
       .then((res) => {
         let products_data = res.data;
         setProducts(products_data);
@@ -112,7 +114,7 @@ const Footer = () => {
   };
   const handleSubmitEditProductFormButton = async (e5) => {
     e5.preventDefault();
-    await fetch("http://localhost:4500/api/products", {
+    await fetch(`${Base_URL}/api/products`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -173,7 +175,7 @@ const Footer = () => {
   const updateProductInDatabase = async (productId, updatedUpvotes) => {
     try {
       const response = await fetch(
-        `http://localhost:4500/api/products/${productId}`,
+        `${Base_URL}/api/products/${productId}`,
         {
           method: "PUT",
           headers: {
@@ -222,7 +224,7 @@ const Footer = () => {
       window.alert("User already exists.Please Login");
       navigate("/login");
     } else {
-      await fetch("http://localhost:4500/api/users", {
+      await fetch(`${Base_URL}/api/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -312,7 +314,8 @@ const Footer = () => {
     try {
       const latestComment = updatedComments[updatedComments.length - 1];
       const response = await fetch(
-        `http://localhost:4500/api/products/${productId}`,
+       
+        `${Base_URL}/api/products/${productId}`,
         {
           method: "PUT",
           headers: {
@@ -334,7 +337,7 @@ const Footer = () => {
 
   async function handleProductFormButton(e) {
     e.preventDefault();
-    await fetch("http://localhost:4500/api/products", {
+    await fetch(`${Base_URL}/api/products`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

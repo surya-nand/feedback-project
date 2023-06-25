@@ -7,6 +7,7 @@ import Nameimg from "./../Assets/nameimg.png";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { useEffect } from "react";
+const Base_URL = 'https://feedback-server-rn39.onrender.com'
 
 
 function Signup() {
@@ -16,7 +17,7 @@ function Signup() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4500/api/users")
+      .get(`${Base_URL}/api/users`)
       .then((res) => {
         let users_data = res.data;
         setRegisteredUsers(users_data);
@@ -55,7 +56,7 @@ function Signup() {
         navigate('/login')
     }
     else{
-        await fetch("http://localhost:4500/api/users", {
+        await fetch(`${Base_URL}/api/users`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
