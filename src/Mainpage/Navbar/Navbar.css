@@ -59,11 +59,11 @@
 }
 
 .navbar-pp-image{
-    width: 54px;
-height: 54px;
-flex-shrink: 0;
-border-radius: 27.643px;
-background: lightgray 50% / cover no-repeat;
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    border-radius: 27.643px;
+    background: lightgray 50% / cover no-repeat;
 }
 
 .navbar-loggedin{
